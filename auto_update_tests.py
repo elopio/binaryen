@@ -78,7 +78,6 @@ print '\n[ checking wasm-link-metadata testcases... ]\n'
 
 for obj_path in files_with_pattern('test', 'lld', '*.o'):
   print '..', obj_path
-  json_path = obj_path.replace('.o', '.json')
 
   cmd = WASM_LINK_METADATA + [obj_path]
   actual = run_command(cmd)
@@ -89,6 +88,7 @@ print '\n[ checking wasm-emscripten-finalize testcases... ]\n'
 for wast_path in files_with_pattern('test', 'lld', '*.wast'):
   print '..', wast_path
   out_path = wast_path + '.out'
+  json_path = obj_path.replace('.o', '.json')
   cmd = WASM_EMSCRIPTEN_FINALIZE + [wast_path, '-S']
   actual = run_command(cmd)
   with open(out_path, 'w') as o: o.write(actual)
