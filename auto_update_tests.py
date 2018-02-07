@@ -79,7 +79,7 @@ print '\n[ checking wasm-emscripten-finalize testcases... ]\n'
 for wast_path in files_with_pattern('test', 'lld', '*.wast'):
   print '..', wast_path
   out_path = wast_path + '.out'
-  cmd = WASM_EMSCRIPTEN_FINALIZE + [wast_path, '-S']
+  cmd = WASM_EMSCRIPTEN_FINALIZE + [wast_path, '-S', '--global-base=1024']
   actual = run_command(cmd)
   with open(out_path, 'w') as o: o.write(actual)
 
